@@ -1,0 +1,77 @@
+commit 4fe937d3bf433eb3d5fa744898dfb55773b19c0d
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:27:41 2021 +0200
+
+    harjoittelua done
+
+commit 5bfb6fa5d94a988abbfd439b5e48c854b56174fd
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:22:17 2021 +0200
+
+    tiedostoja added
+
+commit d2bd83fdc99d7ded88b44275f35669c3f4d1162d
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:21:09 2021 +0200
+
+    git restore(git reset HEAD) introduced
+
+commit 563e884ccca3391d01ef617cd23dbe8db78dba14
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:17:15 2021 +0200
+
+    git add -p introduced
+
+commit df8b7db81921ed1f8fe56c9b419bfd22a269a9b3
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:14:31 2021 +0200
+
+    tiedosto.txt deleted from git
+
+commit 1e958ef5a40e7b4277b765cf74915480b917704d
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:13:16 2021 +0200
+
+    tiedosto renamed
+
+commit f1168cafdb7c990ee11f462858878c3931aa699b
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:12:22 2021 +0200
+
+    toinen.txt deleted
+
+commit a96bad356cccc7c62f672af581727163c43f08aa
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:07:20 2021 +0200
+
+    tiedosto.txt modified twice
+
+commit d8bea1aad61cd40c31b9d259b07ee4f15830f8dd
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 14:05:50 2021 +0200
+
+    tiedosto.txt modified
+
+commit 095e43ffd086cfebe1288d0d38ee5896081354e4
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 13:57:26 2021 +0200
+
+    a lot of things done
+
+commit 56b2ac177fb37f45ad8dc3c55f9069c07119aa26
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 13:55:50 2021 +0200
+
+    kolmas added
+
+commit 52461262a5ce37a7ab865e6455f9c59efa39418e
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 13:55:21 2021 +0200
+
+    muutos ja lisäys
+
+commit 61d3b3dfe727f124334d2eec3db572b11a5eb60f
+Author: Maksim Ilmast <maksim.ilmast@yandex.com>
+Date:   Tue Mar 16 13:53:44 2021 +0200
+
+    tiedosto.txt luotu
