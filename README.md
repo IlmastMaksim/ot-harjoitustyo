@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka, kevät 2021
 
-*Kurssilla tutustutaan ohjelmistokehityksen periaatteisiin sekä menetelmiin ja sovelletaan niitä toteuttamalla pienehkö harjoitustyö.*
+*Kurssilla tutustutaan ohjelmistokehityksen periaatteisiin sekä menetelmiin ja sovelletaan niitä toteuttamalla pienehkö harjoitustyö. *
 
 ## Viikko 1
 
