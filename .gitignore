@@ -3,3 +3,7 @@ __pycache__
 LICENSE
 .env
 .pytest_cache
+/laskarit/viikko2/unicafe/.coverage
+/laskarit/viikko2/unicafe/htmlcov
+.cache/
+.vscode/
