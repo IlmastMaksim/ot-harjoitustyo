@@ -1,14 +1,48 @@
 # Ohjelmistotekniikka, kevät 2021
-*Kurssilla tutustutaan ohjelmistokehityksen periaatteisiin sekä menetelmiin ja sovelletaan 
-niitä toteuttamalla pienehkö harjoitustyö.*
-## Viikko 1
-[gitlog.txt](https://github.com/IlmastMaksim/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt) 
 
-[komentorivi.txt](https://github.com/IlmastMaksim/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
+## Dokumentaatio
 
-# Viikko 2 
-[maksukortti](https://github.com/IlmastMaksim/ot-harjoitustyo/tree/master/laskarit/viikko2/maksukortti)
+- [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
+- [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 
-[unicafe](https://github.com/IlmastMaksim/ot-harjoitustyo/tree/master/laskarit/viikko2/unicafe)
+## Asennus
 
-[vaatimusmäärittely](https://github.com/IlmastMaksim/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
+1. Asenna riippuvuudet komennolla:
+
+```bash
+poetry install
+```
+
+2. Käynnistä sovellus komennolla:
+
+```bash
+poetry run invoke start
+```
+
+## Komentorivitoiminnot
+
+### Ohjelman suorittaminen
+
+Ohjelman pystyy suorittamaan komennolla:
+
+```bash
+poetry run invoke start
+```
+
+### Testaus
+
+Testit suoritetaan komennolla:
+
+```bash
+poetry run invoke test
+```
+
+### Testikattavuus
+
+Testikattavuusraportin voi generoida komennolla:
+
+```bash
+poetry run invoke coverage-report
+```
+
+Raportti generoituu _htmlcov_-hakemistoon.
