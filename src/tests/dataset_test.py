@@ -1,5 +1,5 @@
 import unittest
-from util.dataset import get_exercises_with_dumbbells
+from services.workout import get_exercises_with_dumbbells
 
 class DatasetTest(unittest.TestCase):
     def test_get_exercises_with_dumbbells(self):
