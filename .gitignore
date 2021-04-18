@@ -9,3 +9,4 @@ LICENSE
 .coverage
 htmlcov
 data
+src/data/temp.gif

@@ -1,4 +1,6 @@
 import json
+import random
+import re
 
 def get_workout_data():
      with open("./src/data/dataset.json", "r") as read_file:
@@ -28,5 +30,11 @@ def get_composed_workout(equipment, exercise_type, muscle_group):
     workout = []
     for el in data:
         if (equipment in el["Equipment"] and exercise_type in el["Exercise Type"]) or (equipment in el["Equipment"] and muscle_group in el["Major Muscle"]) or (exercise_type in el["Exercise Type"] and muscle_group in el["Major Muscle"]):
-            workout.append({"Exercise": el["Exercise"], "Notes": el["Notes"], "Example": el["Example"]})
-    return workout
+            workout.append({"Exercise": el["Exercise"],"Sets": "0", "Reps": "0", "Example": "Show Example", "Completed": "False"})
+    return random.sample(workout, 5) if len(workout) > 5 else workout
+
+def get_example_link_by_exercise(exercise):
+    data = get_workout_data()
+    for el in data:
+        if el["Exercise"] == exercise:
+            return re.search(r"\(([A-Za-z0-9_]+)\)", el["Example"])

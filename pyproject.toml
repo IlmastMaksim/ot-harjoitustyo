@@ -10,7 +10,6 @@ dearpygui = "^0.6.365"
 invoke = "^1.5.0"
 coverage = "^5.5"
 pytest = "^6.2.3"
-Pillow = "^8.2.0"
 requests = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
