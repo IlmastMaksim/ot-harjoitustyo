@@ -4,9 +4,11 @@ from database_connection import get_database_connection
 def drop_tables(connection):
     cursor = connection.cursor()
 
-    cursor.execute('''
+    cursor.execute(
+        """
         drop table if exists ot;
-    ''')
+    """
+    )
 
     connection.commit()
 
@@ -14,12 +16,14 @@ def drop_tables(connection):
 def create_tables(connection):
     cursor = connection.cursor()
 
-    cursor.execute('''
+    cursor.execute(
+        """
         create table ot (
             id text primary key,
             mycolumn text
         );
-    ''')
+    """
+    )
 
     connection.commit()
 

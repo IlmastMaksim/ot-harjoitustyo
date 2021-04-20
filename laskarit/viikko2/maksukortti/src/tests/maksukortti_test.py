@@ -1,5 +1,6 @@
 import unittest
-from src.maksukortti import Maksukortti 
+from src.maksukortti import Maksukortti
+
 
 class TestMaksukortti(unittest.TestCase):
     def setUp(self):
@@ -10,7 +11,10 @@ class TestMaksukortti(unittest.TestCase):
 
     def test_syo_edullisesti_vahentaa_saldoa_oikein(self):
         self.kortti.syo_edullisesti()
-        self.assertEqual(str(self.kortti), "Kortilla on rahaa 7.5 euroa",)
+        self.assertEqual(
+            str(self.kortti),
+            "Kortilla on rahaa 7.5 euroa",
+        )
 
     def test_syo_maukkaasti_vahentaa_saldoa_oikein(self):
         self.kortti.syo_maukkaasti()
@@ -39,7 +43,7 @@ class TestMaksukortti(unittest.TestCase):
     def test_kortin_saldo_ei_ylita_maksimiarvoa(self):
         self.kortti.lataa_rahaa(200)
         self.assertEqual(str(self.kortti), "Kortilla on rahaa 150 euroa")
-    
+
     def test_kortilla_pystyy_ostamaan_edullisen_lounaan(self):
         kortti = Maksukortti(2.5)
         kortti.syo_edullisesti()

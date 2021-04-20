@@ -1,7 +1,9 @@
-from dearpygui.core import *
-from dearpygui.simple import *
-from ui.table import Table
-from services.workout import get_criterias_by_name, get_composed_workout
+from dearpygui import core, simple
+from services.workout import (
+    get_criterias_by_name,
+    get_composed_workout,
+    get_example_link_by_exercise,
+)
 import requests
 
 
@@ -11,48 +13,82 @@ class Tab:
         self.parent = parent
         self.composed_workout = None
 
-    def show_example(self):
-            try:
-                response = requests.get("https://dl.airtable.com/KNCrgmAZTKyppbcj7oTC_a562d6f5-888c-4b4a-a274-f969c3a8557d.gif")
-                if response.status_code == 200:
-                    open('src/data/temp.gif', 'wb').write(response.content)
-                    add_image("canvas", "src/data/temp.gif")
-                    # download image, turn file into a texture, draw on a canvas, delete image when image is closed)
-            except:
-                show_logger()
-                log_debug("error")  
-
     def compose_workout(self):
-        equipment_val = get_value("Equipment##widget")
-        exercise_type_val = get_value("Exercise Type##widget")
-        muscle_group_val = get_value("Muscle Group##widget")
+        equipment_val = core.get_value("Equipment##widget")
+        exercise_type_val = core.get_value("Exercise Type##widget")
+        muscle_group_val = core.get_value("Muscle Group##widget")
         if not equipment_val or not exercise_type_val or not muscle_group_val:
-            show_item('Fill all the inputs, please.')
+            simple.show_item("Fill all the inputs, please.")
         else:
-            self.composed_workout = get_composed_workout(equipment_val, exercise_type_val, muscle_group_val)
-            hide_item("workout_composition_group")
-            table_1 = Table("Workout")
-            table_1.add_header(["Exercise", "Sets", "Reps", "Example", "Completed"])
+            self.composed_workout = get_composed_workout(
+                equipment_val, exercise_type_val, muscle_group_val
+            )
+            simple.hide_item("workout_composition_group")
+            core.add_table(
+                "Workout", ["Exercise", "Sets", "Reps", "Example"], callback=self.toggle
+            )
             for el in self.composed_workout:
-                table_1.add_row(el.values())
-            add_button("Cancel##widget")
-            add_button("Save##widget") 
-            
+                core.add_row("Workout", list(el.values()))
+            core.add_button("Cancel##widget")
+            core.add_button("Save##widget")
 
     def generate(self):
-        with tab(name=self.tab_name, parent=self.parent):
+        with simple.tab(name=self.tab_name, parent=self.parent):
             if self.tab_name == "Exercises":
-                add_spacing(count=10)
-                add_group(name="workout_execution_group")
-                add_group(name="workout_composition_group")
-                add_combo("Equipment##widget", items=get_criterias_by_name("Equipment"), parent="workout_composition_group")
-                add_spacing(count=4, parent="workout_composition_group")
-                add_combo("Exercise Type##widget", items=get_criterias_by_name("Exercise Type"), parent="workout_composition_group")
-                add_spacing(count=4, parent="workout_composition_group")
-                add_combo("Muscle Group##widget", items=get_criterias_by_name("Major Muscle"), parent="workout_composition_group")
-                add_spacing(count=4, parent="workout_composition_group")
-                add_button("Compose Workout##widget", parent="workout_composition_group", callback=self.compose_workout)
-                add_text('Fill all the inputs, please.', color=[255, 0, 0], parent='workout_composition_group')
-                hide_item('Fill all the inputs, please.')
+                core.add_spacing(count=10)
+                core.add_group(name="workout_execution_group")
+                core.add_group(name="workout_composition_group")
+                core.add_combo(
+                    "Equipment##widget",
+                    items=get_criterias_by_name("Equipment"),
+                    parent="workout_composition_group",
+                )
+                core.add_spacing(count=4, parent="workout_composition_group")
+                core.add_combo(
+                    "Exercise Type##widget",
+                    items=get_criterias_by_name("Exercise Type"),
+                    parent="workout_composition_group",
+                )
+                core.add_spacing(count=4, parent="workout_composition_group")
+                core.add_combo(
+                    "Muscle Group##widget",
+                    items=get_criterias_by_name("Major Muscle"),
+                    parent="workout_composition_group",
+                )
+                core.add_spacing(count=4, parent="workout_composition_group")
+                core.add_button(
+                    "Compose Workout##widget",
+                    parent="workout_composition_group",
+                    callback=self.compose_workout,
+                )
+                core.add_text(
+                    "Fill all the inputs, please.",
+                    color=[255, 0, 0],
+                    parent="workout_composition_group",
+                )
+                simple.hide_item("Fill all the inputs, please.")
             else:
-                add_text(f'text 2')
+                core.add_text(f"text 2")
+
+    def toggle(self, sender, data):
+        selected_rows = core.get_table_selections("Workout")
+        column = selected_rows[0][1]
+        row = selected_rows[0][0]
+        if int(column) == 0:
+            pass
+        elif int(column) == 3:
+            exercise_name = core.get_table_item("Workout", column=0, row=row)
+            example_link = get_example_link_by_exercise(exercise_name)
+            self.show_example(example_link)
+
+        core.set_table_selection("Workout", row=row, column=column, value=False)
+
+    def show_example(self, link):
+        try:
+            response = requests.get(link)
+            if response.status_code == 200:
+                open("src/data/temp.gif", "wb").write(response.content)
+                core.add_image("canvas", "src/data/temp.gif")
+        except:
+            simple.show_logger()
+            core.log_debug("error")

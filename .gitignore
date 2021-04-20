@@ -10,3 +10,4 @@ LICENSE
 htmlcov
 data
 src/data/temp.gif
+src/data/database.sqlite

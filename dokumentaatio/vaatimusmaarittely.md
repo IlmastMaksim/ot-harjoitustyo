@@ -16,19 +16,19 @@ Sovellus koostuu kolmesta eri näkymästä: päänäkymä, kalenteri ja asetukse
 
 ## Perusversion tarjoama toiminnallisuus
 
-- käyttäjä näkee omat suoritukset tekstin muodossa. 
+- ☐ käyttäjä näkee omat suoritukset tekstin muodossa. 
 
-- käyttäjä näkee harjoitelun opastusta tekstin muodossa.  
+- 🗹 käyttäjä näkee harjoitelun opastusta tekstin muodossa.  
 
-- käyttäjä saa muistutukset käyttöjärjestelmän ilmoitusten muodossa.
+- ☐ käyttäjä saa muistutukset käyttöjärjestelmän ilmoitusten muodossa.
 
-- käyttäjä voi määritellä muistutusten aikataulu.
+- ☐ käyttäjä voi määritellä muistutusten aikataulu.
 
 
 ## Jatkokehitysideoita
 
-- sovelluksen graafinen suunnittelu on hyvänlaatuinen, eli siihen kuuluu esim. tyylikät nappit, animaatiot jne.
+- 🗹 sovelluksen graafinen suunnittelu on hyvänlaatuinen, eli siihen kuuluu esim. tyylikät nappit, animaatiot jne.
 
-- käyttäjä näkee omat suoritukset kalenterin muodossa.
+- ☐ käyttäjä näkee omat suoritukset kaavion muodossa.
 
-- käyttäjä voi päätellä minkäläisiä harjoittelutapoja hänelle sopii ja mihin aikaan, esim. kuuluuko käsipainoharjoitukset aikatauluun, jos kuuluu niin aamulla vai illalla. 
+- ☐ käyttäjä voi päätellä minkäläisiä harjoittelutapoja hänelle sopii ja mihin aikaan, esim. kuuluuko käsipainoharjoitukset aikatauluun, jos kuuluu niin aamulla vai illalla. 
