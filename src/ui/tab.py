@@ -1,9 +1,5 @@
 from dearpygui import core, simple
-from services.workout import (
-    get_criterias_by_name,
-    get_composed_workout,
-    get_example_link_by_exercise,
-)
+from services.workout import workout_services
 import requests
 from PIL import Image
 import random
@@ -29,7 +25,7 @@ class Tab:
             simple.show_item("Fill all the inputs, please.")
         else:
             simple.hide_item("workout_composition_group")
-            self.composed_workout = get_composed_workout(
+            self.composed_workout = workout_services.get_composed_workout(
                 equipment_val, exercise_type_val, muscle_group_val
             )
             core.add_group("buttons")
@@ -57,19 +53,19 @@ class Tab:
                 core.add_group(name="workout_composition_group")
                 core.add_combo(
                     "Equipment##widget",
-                    items=get_criterias_by_name("Equipment"),
+                    items=workout_services.get_criterias_by_name("Equipment"),
                     parent="workout_composition_group",
                 )
                 core.add_spacing(count=4, parent="workout_composition_group")
                 core.add_combo(
                     "Exercise Type##widget",
-                    items=get_criterias_by_name("Exercise Type"),
+                    items=workout_services.get_criterias_by_name("Exercise Type"),
                     parent="workout_composition_group",
                 )
                 core.add_spacing(count=4, parent="workout_composition_group")
                 core.add_combo(
                     "Muscle Group##widget",
-                    items=get_criterias_by_name("Major Muscle"),
+                    items=workout_services.get_criterias_by_name("Major Muscle"),
                     parent="workout_composition_group",
                 )
                 core.add_spacing(count=4, parent="workout_composition_group")
@@ -116,7 +112,7 @@ class Tab:
             )
         elif column == 3:
             exercise_name = core.get_table_item("workout_table", column=0, row=row)
-            example_link = get_example_link_by_exercise(exercise_name)
+            example_link = workout_services.get_example_link_by_exercise(exercise_name)
             self.show_example(example_link)
         core.set_table_selection("workout_table", row=row, column=column, value=False)
 

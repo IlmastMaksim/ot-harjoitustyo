@@ -6,7 +6,7 @@ def drop_tables(connection):
 
     cursor.execute(
         """
-        drop table if exists ot;
+        drop table if exists records;
     """
     )
 
@@ -18,9 +18,12 @@ def create_tables(connection):
 
     cursor.execute(
         """
-        create table ot (
-            id text primary key,
-            mycolumn text
+        create table records (
+            id INTEGER PRIMARY KEY,
+            exercise TEXT,
+            sets INTEGER,
+            reps INTGER,
+            created_on TEXT
         );
     """
     )
