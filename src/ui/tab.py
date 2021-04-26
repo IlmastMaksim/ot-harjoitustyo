@@ -1,5 +1,6 @@
 from dearpygui import core, simple
 from services.workout import workout_services
+from services.record import record_services
 import requests
 from PIL import Image
 import random
@@ -9,7 +10,7 @@ class Tab:
     def __init__(self, tab_name, parent):
         self.tab_name = tab_name
         self.parent = parent
-        self.composed_workout = None
+        self._composed_workout = None
 
     def cancel_workout(self):
         core.delete_item("workout_table")
@@ -25,7 +26,7 @@ class Tab:
             simple.show_item("Fill all the inputs, please.")
         else:
             simple.hide_item("workout_composition_group")
-            self.composed_workout = workout_services.get_composed_workout(
+            self._composed_workout = workout_services.get_composed_workout(
                 equipment_val, exercise_type_val, muscle_group_val
             )
             core.add_group("buttons")
@@ -35,7 +36,7 @@ class Tab:
                 parent="workout_execution_group",
                 callback=self.toggle,
             )
-            for el in self.composed_workout:
+            for el in self._composed_workout:
                 core.add_row("workout_table", list(el.values()))
             core.add_button(
                 "Cancel##widget", callback=self.cancel_workout, parent="buttons"
@@ -43,7 +44,7 @@ class Tab:
             core.add_button(
                 "Clear##widget", callback=self.clear_table, parent="buttons"
             )
-            core.add_button("Save##widget", parent="buttons", callback=save_workout)
+            core.add_button("Save##widget", parent="buttons", callback=self.save_workout)
 
     def generate(self):
         with simple.tab(name=self.tab_name, parent=self.parent):
@@ -81,34 +82,47 @@ class Tab:
                 )
                 simple.hide_item("Fill all the inputs, please.")
             else:
-                core.add_text(f"text 2")
+                core.add_text(f"there will be calendar and charts")
 
     def save_workout(self):
-        pass
+        try:
+            for workout in self._composed_workout:
+                result = record_services.save_record(workout["Exercise"], int(workout["Sets"]), int(workout["Reps"]))
+            core.add_text(
+                "Results successfully saved",
+                color=[0, 255, 0],
+                parent="workout_execution_group",
+            )
+        except:
+            core.add_text(
+                "Error happened while saving the result.",
+                color=[255, 0, 0],
+                parent="workout_execution_group",
+            )
 
     def toggle(self, sender, data):
         selected_rows = core.get_table_selections("workout_table")
         column = int(selected_rows[0][1])
         row = int(selected_rows[0][0])
         if column == 1:
-            self.composed_workout[row]["Sets"] = (
-                int(self.composed_workout[row]["Sets"]) + 1
+            self._composed_workout[row]["Sets"] = (
+                int(self._composed_workout[row]["Sets"]) + 1
             )
             core.set_table_item(
                 "workout_table",
                 row=row,
                 column=column,
-                value=str(self.composed_workout[row]["Sets"]),
+                value=str(self._composed_workout[row]["Sets"]),
             )
         elif column == 2:
-            self.composed_workout[row]["Reps"] = (
-                int(self.composed_workout[row]["Reps"]) + 1
+            self._composed_workout[row]["Reps"] = (
+                int(self._composed_workout[row]["Reps"]) + 1
             )
             core.set_table_item(
                 "workout_table",
                 row=row,
                 column=column,
-                value=str(self.composed_workout[row]["Reps"]),
+                value=str(self._composed_workout[row]["Reps"]),
             )
         elif column == 3:
             exercise_name = core.get_table_item("workout_table", column=0, row=row)
@@ -131,9 +145,9 @@ class Tab:
             core.log_debug("error")
 
     def clear_table(self):
-        for el in self.composed_workout:
+        for el in self._composed_workout:
             el["Sets"] = 0
             el["Reps"] = 0
         core.clear_table("workout_table")
-        for el in self.composed_workout:
+        for el in self._composed_workout:
             core.add_row("workout_table", list(el.values()))

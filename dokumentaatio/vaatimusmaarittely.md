@@ -22,6 +22,8 @@ Sovellus koostuu kolmesta eri näkymästä: päänäkymä, kalenteri ja asetukse
 
 - ☐ käyttäjä saa muistutukset käyttöjärjestelmän ilmoitusten muodossa.
 
+- 🗹 käyttäjä voi tallentaa suoritukset tietokantaan.
+
 - ☐ käyttäjä voi määritellä muistutusten aikataulu.
 
 

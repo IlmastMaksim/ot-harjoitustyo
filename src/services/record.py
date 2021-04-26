@@ -16,8 +16,11 @@ class RecordServices:
         result = self._record_repo.save_workout_as_record(
             Record(exercise, sets, reps, created_on)
         )
-        if result:
-            return True
+        return result
+
+    def get_all_records(self):
+        records = self._record_repo.get_all_saved_records()
+        return records
 
 
 record_services = RecordServices()
