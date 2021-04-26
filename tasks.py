@@ -10,6 +10,13 @@ def start(ctx):
 def test(ctx):
     ctx.run("pytest src")
 
+@task
+def lint(ctx):
+    ctx.run("pylint src")
+
+@task
+def refactor(ctx):
+    ctx.run("black src")
 
 @task
 def coverage(ctx):
