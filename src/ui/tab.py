@@ -138,22 +138,23 @@ class Tab:
     def cancel_workout(self):
         core.delete_item("workout_table")
         core.delete_item("buttons", children_only=True)
-        core.delete_item("example_image")
+        #core.delete_item("example_image")
         simple.show_item("workout_composition_group")
 
-    def show_example(self, link):
-        try:
-            response = requests.get(link)
-            if response.status_code == 200:
-                open("src/data/temp.gif", "wb").write(response.content)
-                core.add_image(
-                    "example_image",
-                    "src/data/temp.gif",
-                    parent="workout_execution_group",
-                )
-        except:
-            simple.show_logger()
-            core.log_debug("error")
+    def show_example(self, link): # need to find out how to render gif images 
+        pass
+        #try:
+        #    response = requests.get(link)
+        #    if response.status_code == 200:
+        #        open("src/data/temp.gif", "wb").write(response.content)
+        #        core.add_image(
+        #            "example_image",
+        #            "src/data/temp.gif",
+        #            parent="workout_execution_group",
+        #        )
+        #except:
+        #    simple.show_logger()
+        #    core.log_debug("error")
 
     def clear_table(self):
         for workout in self._composed_workout:
