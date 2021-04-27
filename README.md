@@ -47,3 +47,19 @@ poetry run invoke coverage-report
 ```
 
 Raportti generoituu _htmlcov_-hakemistoon.
+
+### Pylint
+
+Tiedoston [.pylintrc](./.pylintrc) määrittelemät tarkistukset voi suorittaa komennolla:
+
+```bash
+poetry run invoke lint
+```
+
+### Refaktorointi
+
+Src-hakemistossa olevaa koodia voi refaktoroida komennolla:
+
+```bash
+poetry run invoke refactor
+```

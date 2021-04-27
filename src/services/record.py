@@ -2,10 +2,12 @@ from entities.record import Record
 from repositories.record_repository import record_repository
 from datetime import datetime
 
+
 def get_timestamp():
     timestamp = datetime.now()
     created_on = timestamp.isoformat()
     return created_on
+
 
 class RecordServices:
     def __init__(self):

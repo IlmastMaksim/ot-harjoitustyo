@@ -16,7 +16,7 @@ Sovellus koostuu kolmesta eri näkymästä: päänäkymä, kalenteri ja asetukse
 
 ## Perusversion tarjoama toiminnallisuus
 
-- ☐ käyttäjä näkee omat suoritukset tekstin muodossa. 
+- 🗹 käyttäjä näkee omat suoritukset tekstin muodossa. 
 
 - 🗹 käyttäjä näkee harjoitelun opastusta tekstin muodossa.  
 

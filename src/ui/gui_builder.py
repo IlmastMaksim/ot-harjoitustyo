@@ -12,8 +12,8 @@ class GuiBuilder:
     def make_gui(self):
         Menu()
         core.add_tab_bar(name="tab_bar", parent="Main Window")
-        Tab("Exercises", "tab_bar").generate()
-        Tab("Activity", "tab_bar").generate()
+        Tab("Workout", "tab_bar").generate()
+        Tab("Records", "tab_bar").generate()
 
     @staticmethod
     def run_gui():

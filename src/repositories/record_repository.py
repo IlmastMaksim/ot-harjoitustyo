@@ -17,7 +17,10 @@ class RecordRepository:
     def get_all_saved_records(self):
         cursor = self._conn.cursor()
         cursor.execute("SELECT * FROM records;")
-        res = cursor.fetchall()
+        rows = cursor.fetchall()
+        res = []
+        for row in rows:
+            res.append([row[1], row[2], row[3], row[4]])
         self._conn.commit()
         return res
 

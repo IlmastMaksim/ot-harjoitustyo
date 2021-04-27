@@ -16,6 +16,8 @@ class DatasetTest(unittest.TestCase):
     def test_get_example_link_by_exercise(self):
         workout_data = get_workout_data()
         rand_dataobject = random.choice(workout_data)
-        example_link = workout_services.get_example_link_by_exercise(rand_dataobject["Exercise"])
+        example_link = workout_services.get_example_link_by_exercise(
+            rand_dataobject["Exercise"]
+        )
         r = requests.head(example_link)
         self.assertEqual(r.status_code, 200)
