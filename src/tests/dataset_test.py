@@ -21,3 +21,18 @@ class DatasetTest(unittest.TestCase):
         )
         r = requests.head(example_link)
         self.assertEqual(r.status_code, 200)
+
+    def test_get_criterias_by_name(self):
+        test_name = "Exercise Type"
+        dummy_res = ["Weight", "Machine", "Cardio", "Laps", "Plyo"]
+        workout_data = get_workout_data()
+        criterias_by_name = workout_services.get_criterias_by_name(test_name)
+        self.assertEqual(len(dummy_res), len(criterias_by_name)) 
+        dummy_res.sort()
+        criterias_by_name.sort()
+        arrays_not_equal = True
+        for i in range(len(criterias_by_name)):
+            if dummy_res[i] != criterias_by_name[i]:
+                arrays_not_equal = False
+        self.assertEqual(arrays_not_equal, True)
+        

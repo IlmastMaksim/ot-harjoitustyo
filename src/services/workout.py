@@ -33,8 +33,14 @@ class WorkoutServices:
         workout = []
         for data_obj in self.data:
             if (
-                (equipment in data_obj["Equipment"] and exercise_type in data_obj["Exercise Type"])
-                or (equipment in data_obj["Equipment"] and muscle_group in data_obj["Major Muscle"])
+                (
+                    equipment in data_obj["Equipment"]
+                    and exercise_type in data_obj["Exercise Type"]
+                )
+                or (
+                    equipment in data_obj["Equipment"]
+                    and muscle_group in data_obj["Major Muscle"]
+                )
                 or (
                     exercise_type in data_obj["Exercise Type"]
                     and muscle_group in data_obj["Major Muscle"]

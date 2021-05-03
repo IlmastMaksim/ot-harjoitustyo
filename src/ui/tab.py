@@ -4,12 +4,13 @@ from services.record import record_services
 import requests
 from PIL import Image
 import random
+from ui.chart import pie_chart, line_chart
 
 
 class Tab:
-    def __init__(self, tab_name, parent):
+    def __init__(self, tab_name, tab_parent):
         self.tab_name = tab_name
-        self.parent = parent
+        self.tab_parent = tab_parent
         self._composed_workout = None
         self._records = record_services.get_all_records()
 
@@ -44,7 +45,7 @@ class Tab:
             )
 
     def generate(self):
-        with simple.tab(name=self.tab_name, parent=self.parent):
+        with simple.tab(name=self.tab_name, parent=self.tab_parent):
             if self.tab_name == "Workout":
                 core.add_spacing(count=10)
                 core.add_group(name="workout_execution_group")
@@ -79,12 +80,20 @@ class Tab:
                 )
                 simple.hide_item("Fill all the inputs, please.")
             elif self.tab_name == "Records":
+                exercises = record_services.count_times_exercises_done()[0]
+                times_exercises_done = record_services.count_times_exercises_done()[1]
+                workouts_per_day = record_services.count_workouts_per_day()
                 core.add_table(
                     "record_table",
                     ["Exercise", "Sets", "Reps", "Date"],
                 )
                 for record_arr in self._records:
                     core.add_row("record_table", record_arr)
+                pie_chart.generate_chart(data=times_exercises_done, labels=exercises)
+                line_chart.generate_chart(
+                    data=workouts_per_day,
+                    labels=[i + 1 for i in range(len(workouts_per_day))],
+                )
 
     def toggle(self, sender, data):
         selected_rows = core.get_table_selections("workout_table")
@@ -127,23 +136,27 @@ class Tab:
                 color=[0, 255, 0],
                 parent="workout_execution_group",
             )
-            self._records = record_services.get_all_records()
         except:
             core.add_text(
-                "Error happened while saving the result.",
+                "Error happened while saving the result",
                 color=[255, 0, 0],
                 parent="workout_execution_group",
             )
+        self._records = record_services.get_all_records()
 
     def cancel_workout(self):
         core.delete_item("workout_table")
         core.delete_item("buttons", children_only=True)
-        #core.delete_item("example_image")
+        # core.delete_item("example_image")
         simple.show_item("workout_composition_group")
+        if core.get_value("Results successfully saved"):
+            core.delete_item("Results successfully saved")
+        if core.get_value("Error happened while saving the result"):
+            core.delete_item("Results successfully saved")
 
-    def show_example(self, link): # need to find out how to render gif images 
+    def show_example(self, link):  # need to find out how to render gif images
         pass
-        #try:
+        # try:
         #    response = requests.get(link)
         #    if response.status_code == 200:
         #        open("src/data/temp.gif", "wb").write(response.content)
@@ -152,7 +165,7 @@ class Tab:
         #            "src/data/temp.gif",
         #            parent="workout_execution_group",
         #        )
-        #except:
+        # except:
         #    simple.show_logger()
         #    core.log_debug("error")
 
