@@ -27,7 +27,7 @@ class DatasetTest(unittest.TestCase):
         dummy_res = ["Weight", "Machine", "Cardio", "Laps", "Plyo"]
         workout_data = get_workout_data()
         criterias_by_name = workout_services.get_criterias_by_name(test_name)
-        self.assertEqual(len(dummy_res), len(criterias_by_name)) 
+        self.assertEqual(len(dummy_res), len(criterias_by_name))
         dummy_res.sort()
         criterias_by_name.sort()
         arrays_not_equal = True
@@ -35,4 +35,10 @@ class DatasetTest(unittest.TestCase):
             if dummy_res[i] != criterias_by_name[i]:
                 arrays_not_equal = False
         self.assertEqual(arrays_not_equal, True)
-        
+
+    def test_get_composed_workout(self):
+        dummy_set = ["Dumbbells", "Weight", "Arms"]
+        composed_workout = workout_services.get_composed_workout(
+            dummy_set[0], dummy_set[1], dummy_set[2]
+        )
+        self.assertEqual(len(composed_workout), 5)

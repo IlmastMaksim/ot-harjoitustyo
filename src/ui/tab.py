@@ -1,10 +1,10 @@
 from dearpygui import core, simple
 from services.workout import workout_services
 from services.record import record_services
-import requests
-from PIL import Image
-import random
 from ui.chart import pie_chart, line_chart
+from PIL import Image
+import requests
+import random
 
 
 class Tab:
@@ -128,7 +128,7 @@ class Tab:
     def save_workout(self):
         try:
             for workout in self._composed_workout:
-                record_services.save_record(
+                record_services.save_workout(
                     workout["Exercise"], int(workout["Sets"]), int(workout["Reps"])
                 )
             core.add_text(

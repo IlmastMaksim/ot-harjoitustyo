@@ -11,10 +11,19 @@ def get_timestamp():
 
 
 class RecordServices:
+    """Luokka, jonka avulla toteutetaan sovelluslogikkaa liittyen käyttäjän tekimiin suorituksiin"""
+
     def __init__(self):
         self._record_repo = record_repository
 
-    def save_record(self, exercise, sets, reps):
+    def save_workout(self, exercise, sets, reps):
+        """Tallentaa suoritetun harjoituksen suorituksena
+
+        Attributes:
+            exercise: Kuvaa suoritetun harjoituksen nimettä
+            sets: Kuvaa sarjojen määrää
+            reps: Kuvaa toistojen määrää
+        """
         created_on = get_timestamp()
         result = self._record_repo.save_workout_as_record(
             Record(exercise, sets, reps, created_on)
@@ -22,26 +31,22 @@ class RecordServices:
         return result
 
     def get_all_records(self):
+        """Palauttaa kaikki tallennetut suoritukset listan muodossa"""
         records = self._record_repo.get_all_saved_records()
         return records
 
     def get_all_exercises(self):
+        """Palauttaa kaiken tallentujen harjoitusten nimet listan muodossa"""
         exercises = self._record_repo.get_all_exercises()
         return exercises
 
-    def get_all_sets(self):
-        sets = self._record_repo.get_all_sets()
-        return sets
-
-    def get_all_reps(self):
-        reps = self._record_repo.get_all_reps()
-        return reps
-
     def get_all_dates(self):
+        """Palauttaa kaiken tallentujen harjoitusten määräaikat listan muodossa"""
         dates = self._record_repo.get_all_dates()
         return dates
 
     def count_times_exercises_done(self):
+        """Laskee kuinka paljon kertaa joka harjoitus oli suoritettu"""
         exercises = self.get_all_exercises()
         counter = {}
         for exercise in exercises:
@@ -51,6 +56,7 @@ class RecordServices:
         return list(counter.keys()), list(counter.values())
 
     def count_workouts_per_day(self):
+        """Laskee paljonko harjoituksia suoritetaan päivittäin"""
         dates = self.get_all_dates()
         dates_dict = {}
         for date in dates:

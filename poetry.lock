@@ -8,11 +8,11 @@ python-versions = "*"
 
 [[package]]
 name = "astroid"
-version = "2.5.3"
+version = "2.5.6"
 description = "An abstract syntax tree for Python with inference support."
 category = "dev"
 optional = false
-python-versions = ">=3.6"
+python-versions = "~=3.6"
 
 [package.dependencies]
 lazy-object-proxy = ">=1.4.0"
@@ -117,7 +117,7 @@ python-versions = ">=3.6, <3.7"
 
 [[package]]
 name = "dearpygui"
-version = "0.6.403"
+version = "0.6.415"
 description = "DearPyGui: A simple Python GUI Toolkit"
 category = "main"
 optional = false
@@ -133,7 +133,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "importlib-metadata"
-version = "3.10.1"
+version = "4.0.1"
 description = "Read metadata from Python packages"
 category = "main"
 optional = false
@@ -251,21 +251,18 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
 name = "pylint"
-version = "2.7.4"
+version = "2.8.2"
 description = "python code static checker"
 category = "dev"
 optional = false
 python-versions = "~=3.6"
 
 [package.dependencies]
-astroid = ">=2.5.2,<2.7"
+astroid = ">=2.5.6,<2.7"
 colorama = {version = "*", markers = "sys_platform == \"win32\""}
 isort = ">=4.2.5,<6"
 mccabe = ">=0.6,<0.7"
 toml = ">=0.7.1"
-
-[package.extras]
-docs = ["sphinx (==3.5.1)", "python-docs-theme (==2020.12)"]
 
 [[package]]
 name = "pyparsing"
@@ -277,7 +274,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "pytest"
-version = "6.2.3"
+version = "6.2.4"
 description = "pytest: simple powerful testing with Python"
 category = "main"
 optional = false
@@ -341,7 +338,7 @@ python-versions = "*"
 
 [[package]]
 name = "typing-extensions"
-version = "3.7.4.3"
+version = "3.10.0.0"
 description = "Backported and Experimental Type Hints for Python 3.5+"
 category = "main"
 optional = false
@@ -391,8 +388,8 @@ appdirs = [
     {file = "appdirs-1.4.4.tar.gz", hash = "sha256:7d5d0167b2b1ba821647616af46a749d1c653740dd0d2415100fe26e27afdf41"},
 ]
 astroid = [
-    {file = "astroid-2.5.3-py3-none-any.whl", hash = "sha256:bea3f32799fbb8581f58431c12591bc20ce11cbc90ad82e2ea5717d94f2080d5"},
-    {file = "astroid-2.5.3.tar.gz", hash = "sha256:ad63b8552c70939568966811a088ef0bc880f99a24a00834abd0e3681b514f91"},
+    {file = "astroid-2.5.6-py3-none-any.whl", hash = "sha256:4db03ab5fc3340cf619dbc25e42c2cc3755154ce6009469766d7143d1fc2ee4e"},
+    {file = "astroid-2.5.6.tar.gz", hash = "sha256:8a398dfce302c13f14bab13e2b14fe385d32b73f4e4853b9bdfb64598baa1975"},
 ]
 atomicwrites = [
     {file = "atomicwrites-1.4.0-py2.py3-none-any.whl", hash = "sha256:6d1784dea7c0c8d4a5172b6c620f40b6e4cbfdf96d783691f2e1302a7b88e197"},
@@ -480,26 +477,27 @@ dataclasses = [
     {file = "dataclasses-0.8.tar.gz", hash = "sha256:8479067f342acf957dc82ec415d355ab5edb7e7646b90dc6e2fd1d96ad084c97"},
 ]
 dearpygui = [
-    {file = "dearpygui-0.6.403-cp36-cp36m-macosx_10_6_x86_64.whl", hash = "sha256:66183c7b94a3ae701acbb0c7d1d1c5205dc3cb574219b37de9cb75c0bb471b16"},
-    {file = "dearpygui-0.6.403-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:68523184eac31540a83e099329b001e822766e6c833267ab50664869f4c06af1"},
-    {file = "dearpygui-0.6.403-cp36-cp36m-win_amd64.whl", hash = "sha256:5b63ac77fe3e599ff744e6ca91d83e501363266ad81eb595cd44df01d632b3ab"},
-    {file = "dearpygui-0.6.403-cp37-cp37m-macosx_10_6_x86_64.whl", hash = "sha256:85750fc2196098834a4dfdb13f082e51a5a1d0f0ae8765e1b8d8019a2d264a38"},
-    {file = "dearpygui-0.6.403-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:3a54f11648e6662cb472e886d49e0f93f9781e09ad79f50d92ad4b5cc6f362f0"},
-    {file = "dearpygui-0.6.403-cp37-cp37m-win_amd64.whl", hash = "sha256:1244ff435492344083448b4fbc27543cbadc9e64e2cbe8af352aefb69896b875"},
-    {file = "dearpygui-0.6.403-cp38-cp38-macosx_10_6_x86_64.whl", hash = "sha256:f7ff2410736ce8feafc61ef37925ea89c5559fbf262f5c1df9eb09683f1a2bf2"},
-    {file = "dearpygui-0.6.403-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:bb65f23397d966263cf2ba5feb0353b018b67a0246bbb98f7a0964afd7827ac2"},
-    {file = "dearpygui-0.6.403-cp38-cp38-win_amd64.whl", hash = "sha256:b7f82262057cc2e4ff9cf48a88c6cd7813816aadaefc62a9459066fdd2502ab4"},
-    {file = "dearpygui-0.6.403-cp39-cp39-macosx_10_6_x86_64.whl", hash = "sha256:53e33ab85e177dfa2c14e551802b16a8c3b7ec633f6f15bfb0ab7aedfb0f052e"},
-    {file = "dearpygui-0.6.403-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:98834630b2ae2b8de29c20af0a1dd0a3b15e222c689f43bb0b92e5dbf09d9048"},
-    {file = "dearpygui-0.6.403-cp39-cp39-win_amd64.whl", hash = "sha256:6621b2649639df870b1421ed39fb04e5293c15a1d5905a97744f6918997cb5a2"},
+    {file = "dearpygui-0.6.415-cp36-cp36m-macosx_10_6_x86_64.whl", hash = "sha256:35cb3909383813e6a6149f533a7ffc1632407826b4323006be743f6fa42c283c"},
+    {file = "dearpygui-0.6.415-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:910a6eaf9c81cb3591c80b87b3943018f31926cfe81495a091423ab46f53aea4"},
+    {file = "dearpygui-0.6.415-cp36-cp36m-win_amd64.whl", hash = "sha256:e7bb980c8547a026c74fcfc7ab739dbc0caf8f07fad4c2307d224a647af21c2e"},
+    {file = "dearpygui-0.6.415-cp37-cp37m-linux_armv7l.whl", hash = "sha256:f2a7dbe1fc428a076eec09be89cef35e320d06d974d405d9e27869a499794f32"},
+    {file = "dearpygui-0.6.415-cp37-cp37m-macosx_10_6_x86_64.whl", hash = "sha256:edc7132f541dd1df90d68a813e8a6d5820ec6bea52ed96918d4e84505fe3d366"},
+    {file = "dearpygui-0.6.415-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:735fd91467febaea5d648d54fac24fd65d92e8aebce57a4e39a690db7cc02e8b"},
+    {file = "dearpygui-0.6.415-cp37-cp37m-win_amd64.whl", hash = "sha256:adacc0ea245a288150dd1dcd4a4208a8de72c7aeff3d7c43a9f88f0d92d4a1ec"},
+    {file = "dearpygui-0.6.415-cp38-cp38-macosx_10_6_x86_64.whl", hash = "sha256:a6edc677adebd36908f8bc034bf12a767a2a869bbb37b209a9548a7526c6a361"},
+    {file = "dearpygui-0.6.415-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:c62f2976ecbf5493491a0b0300c9e75b8b1b9bf397358466b1730c8b7bfb5351"},
+    {file = "dearpygui-0.6.415-cp38-cp38-win_amd64.whl", hash = "sha256:3754903e09edfadce849d345f156323a5fb67e6049a2f2fef3d4ec04b3f92a90"},
+    {file = "dearpygui-0.6.415-cp39-cp39-macosx_10_6_x86_64.whl", hash = "sha256:972742b60aef576d04fe6fcfe31491442ce57bfe40273b9387c46fecac5e7609"},
+    {file = "dearpygui-0.6.415-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:634c5a94745ce2a06c354782ac9423f2ce1418bc14b0d4e33c2551d662b29142"},
+    {file = "dearpygui-0.6.415-cp39-cp39-win_amd64.whl", hash = "sha256:7026fb4441f5e299468c24234bd7f53d934e16100ca1e626255d608ca4b34aff"},
 ]
 idna = [
     {file = "idna-2.10-py2.py3-none-any.whl", hash = "sha256:b97d804b1e9b523befed77c48dacec60e6dcb0b5391d57af6a65a312a90648c0"},
     {file = "idna-2.10.tar.gz", hash = "sha256:b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6"},
 ]
 importlib-metadata = [
-    {file = "importlib_metadata-3.10.1-py3-none-any.whl", hash = "sha256:2ec0faae539743ae6aaa84b49a169670a465f7f5d64e6add98388cc29fd1f2f6"},
-    {file = "importlib_metadata-3.10.1.tar.gz", hash = "sha256:c9356b657de65c53744046fa8f7358afe0714a1af7d570c00c3835c2d724a7c1"},
+    {file = "importlib_metadata-4.0.1-py3-none-any.whl", hash = "sha256:d7eb1dea6d6a6086f8be21784cc9e3bcfa55872b52309bc5fad53a8ea444465d"},
+    {file = "importlib_metadata-4.0.1.tar.gz", hash = "sha256:8c501196e49fb9df5df43833bdb1e4328f64847763ec8a50703148b73784d581"},
 ]
 iniconfig = [
     {file = "iniconfig-1.1.1-py2.py3-none-any.whl", hash = "sha256:011e24c64b7f47f6ebd835bb12a743f2fbe9a26d4cecaa7f53bc4f35ee9da8b3"},
@@ -598,16 +596,16 @@ py = [
     {file = "py-1.10.0.tar.gz", hash = "sha256:21b81bda15b66ef5e1a777a21c4dcd9c20ad3efd0b3f817e7a809035269e1bd3"},
 ]
 pylint = [
-    {file = "pylint-2.7.4-py3-none-any.whl", hash = "sha256:209d712ec870a0182df034ae19f347e725c1e615b2269519ab58a35b3fcbbe7a"},
-    {file = "pylint-2.7.4.tar.gz", hash = "sha256:bd38914c7731cdc518634a8d3c5585951302b6e2b6de60fbb3f7a0220e21eeee"},
+    {file = "pylint-2.8.2-py3-none-any.whl", hash = "sha256:f7e2072654a6b6afdf5e2fb38147d3e2d2d43c89f648637baab63e026481279b"},
+    {file = "pylint-2.8.2.tar.gz", hash = "sha256:586d8fa9b1891f4b725f587ef267abe2a1bad89d6b184520c7f07a253dd6e217"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
     {file = "pyparsing-2.4.7.tar.gz", hash = "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1"},
 ]
 pytest = [
-    {file = "pytest-6.2.3-py3-none-any.whl", hash = "sha256:6ad9c7bdf517a808242b998ac20063c41532a570d088d77eec1ee12b0b5574bc"},
-    {file = "pytest-6.2.3.tar.gz", hash = "sha256:671238a46e4df0f3498d1c3270e5deb9b32d25134c99b7d75370a68cfbe9b634"},
+    {file = "pytest-6.2.4-py3-none-any.whl", hash = "sha256:91ef2131a9bd6be8f76f1f08eac5c5317221d6ad1e143ae03894b862e8976890"},
+    {file = "pytest-6.2.4.tar.gz", hash = "sha256:50bcad0a0b9c5a72c8e4e7c9855a3ad496ca6a881a3641b4260605450772c54b"},
 ]
 regex = [
     {file = "regex-2021.4.4-cp36-cp36m-macosx_10_9_x86_64.whl", hash = "sha256:619d71c59a78b84d7f18891fe914446d07edd48dc8328c8e149cbe0929b4e000"},
@@ -693,9 +691,9 @@ typed-ast = [
     {file = "typed_ast-1.4.3.tar.gz", hash = "sha256:fb1bbeac803adea29cedd70781399c99138358c26d05fcbd23c13016b7f5ec65"},
 ]
 typing-extensions = [
-    {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
-    {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
-    {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
+    {file = "typing_extensions-3.10.0.0-py2-none-any.whl", hash = "sha256:0ac0f89795dd19de6b97debb0c6af1c70987fd80a2d62d1958f7e56fcc31b497"},
+    {file = "typing_extensions-3.10.0.0-py3-none-any.whl", hash = "sha256:779383f6086d90c99ae41cf0ff39aac8a7937a9283ce0a414e5dd782f4c94a84"},
+    {file = "typing_extensions-3.10.0.0.tar.gz", hash = "sha256:50b6f157849174217d0656f99dc82fe932884fb250826c18350e159ec6cdf342"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.4-py2.py3-none-any.whl", hash = "sha256:2f4da4594db7e1e110a944bb1b551fdf4e6c136ad42e4234131391e21eb5b0df"},

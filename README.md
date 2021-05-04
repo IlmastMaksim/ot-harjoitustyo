@@ -5,6 +5,7 @@
 - [Vaatimusmäärittely](./dokumentaatio/vaatimusmaarittely.md)
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
+- [Käyttöohje](./dokumentaatio/käyttöohje.md)
 
 ## Asennus
 
@@ -14,19 +15,13 @@
 poetry install
 ```
 
-2. Jos tulee dearpygui-pakettiin liittyvä virhe, niin suorita:
-
-```bash
-poetry update dearpygui
-```
-
-3. Suorita vaadittavat alustustoimenpiteet komennolla:
+2. Suorita vaadittavat alustustoimenpiteet komennolla:
 
 ```bash
 poetry run invoke build
 ```
 
-4. Käynnistä sovellus komennolla:
+3. Käynnistä sovellus komennolla:
 
 ```bash
 poetry run invoke start

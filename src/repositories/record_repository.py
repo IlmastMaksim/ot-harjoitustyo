@@ -2,19 +2,31 @@ from database_connection import get_database_connection
 
 
 class RecordRepository:
+    """Luokka, jonka avulla vuorovaikutetaan "records"-tietokannan kanssa
+
+    Attributes:
+        conn: yhteys tietokantaan
+    """
+
     def __init__(self, conn):
         self._conn = conn
 
-    def save_workout_as_record(self, record):  # make a func to dump db
+    def save_workout_as_record(self, workout):  # make a func to dump db
+        """Tallentaa suoritetun harjoituksen suorituksena
+
+        Attributes:
+            workout: suoritettu harjoitus
+        """
         cursor = self._conn.cursor()
         cursor.execute(
             "INSERT INTO records (exercise,sets,reps,created_on) VALUES (?,?,?,?);",
-            (record.exercise, record.sets, record.reps, record.created_on),
+            (workout.exercise, workout.sets, workout.reps, workout.created_on),
         )
         self._conn.commit()
         return True
 
     def get_all_saved_records(self):
+        """Palauttaa kaikki tallennetut suoritukset listan muodossa"""
         cursor = self._conn.cursor()
         cursor.execute(
             "SELECT exercise, sets, reps, substr(created_on, 0, 11) as created_on FROM records;"
@@ -27,6 +39,7 @@ class RecordRepository:
         return res
 
     def get_all_exercises(self):
+        """Palauttaa kaiken tallentujen harjoitusten nimet listan muodossa"""
         cursor = self._conn.cursor()
         cursor.execute("SELECT exercise FROM records;")
         rows = cursor.fetchall()
@@ -37,6 +50,7 @@ class RecordRepository:
         return res
 
     def get_all_sets(self):
+        """Palauttaa kaiken tallentujen harjoitusten sarjat listan muodossa"""
         cursor = self._conn.cursor()
         cursor.execute("SELECT sets FROM records;")
         rows = cursor.fetchall()
@@ -47,6 +61,7 @@ class RecordRepository:
         return res
 
     def get_all_reps(self):
+        """Palauttaa kaiken tallentujen harjoitusten toistut listan muodossa"""
         cursor = self._conn.cursor()
         cursor.execute("SELECT reps FROM records;")
         rows = cursor.fetchall()
@@ -57,6 +72,7 @@ class RecordRepository:
         return res
 
     def get_all_dates(self):
+        """Palauttaa kaiken tallentujen harjoitusten määräaikat listan muodossa"""
         cursor = self._conn.cursor()
         cursor.execute("SELECT substr(created_on, 0, 11) as created_on FROM records;")
         rows = cursor.fetchall()
