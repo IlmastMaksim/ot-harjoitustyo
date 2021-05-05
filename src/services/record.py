@@ -57,12 +57,15 @@ class RecordServices:
 
     def count_workouts_per_day(self):
         """Laskee paljonko harjoituksia suoritetaan päivittäin"""
+        simple.show_logger()
         dates = self.get_all_dates()
         dates_dict = {}
         for date in dates:
             if date not in dates_dict:
                 dates_dict[date] = 0
             dates_dict[date] += 1
+        core.log_debug(dates)
+        core.log_debug(dates_dict)
         return list(dates_dict.values())
 
 

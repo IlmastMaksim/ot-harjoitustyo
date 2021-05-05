@@ -12,4 +12,7 @@
 | 20.4. | 3    | testaus, refaktorointi |
 | 24.4. | 4    | suoritukset voidaan tallentaa tietokantaan, rakenteen optimisaatio, testaus, refaktorointi, "workout"-valikko laajennettu |
 | 25.4. | 2    | readme, arkkitehtuuri, refaktorointi, "record"-valikon alustava toteutus |
-| yht | 30.5  |
+| 03.5. | 4    | kaaviot(PieChart, LineChart) tehty |
+| 04.5. | 2    | käyttöohjeet, sovellusarkkitehtuuri, refaktorointi  |
+| 05.5. | 1.5    | valikoiden vaihtamiseen liittyvän buggin korjaus |
+| yht | 38  |

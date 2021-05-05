@@ -25,7 +25,7 @@ class Tab:
             self._composed_workout = workout_services.get_composed_workout(
                 equipment_val, exercise_type_val, muscle_group_val
             )
-            core.add_group("buttons")
+            core.add_group(name="buttons", parent="workout_execution_group")
             core.add_table(
                 "workout_table",
                 ["Exercise", "Sets", "Reps", "Example"],
@@ -41,7 +41,7 @@ class Tab:
                 "Clear##widget", callback=self.clear_table, parent="buttons"
             )
             core.add_button(
-                "Save##widget", parent="buttons", callback=self.save_workout
+                "Save##widget", callback=self.save_workout, parent="buttons"
             )
 
     def generate(self):
@@ -80,6 +80,7 @@ class Tab:
                 )
                 simple.hide_item("Fill all the inputs, please.")
             elif self.tab_name == "Records":
+                self._records = record_services.get_all_records()
                 exercises = record_services.count_times_exercises_done()[0]
                 times_exercises_done = record_services.count_times_exercises_done()[1]
                 workouts_per_day = record_services.count_workouts_per_day()
@@ -143,11 +144,12 @@ class Tab:
                 parent="workout_execution_group",
             )
         self._records = record_services.get_all_records()
+        self.cancel_workout()
 
     def cancel_workout(self):
-        core.delete_item("workout_table")
-        core.delete_item("buttons", children_only=True)
         # core.delete_item("example_image")
+        core.delete_item("buttons")
+        core.delete_item("workout_table")
         simple.show_item("workout_composition_group")
         if core.get_value("Results successfully saved"):
             core.delete_item("Results successfully saved")

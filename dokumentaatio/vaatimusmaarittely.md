@@ -31,6 +31,6 @@ Sovellus koostuu kolmesta eri näkymästä: päänäkymä, kalenteri ja asetukse
 
 - 🗹 sovelluksen graafinen suunnittelu on hyvänlaatuinen, eli siihen kuuluu esim. tyylikät nappit, animaatiot jne.
 
-- ☐ käyttäjä näkee omat suoritukset kaavion muodossa.
+- 🗹 käyttäjä näkee omat suoritukset kaavion muodossa.
 
 - ☐ käyttäjä voi päätellä minkäläisiä harjoittelutapoja hänelle sopii ja mihin aikaan, esim. kuuluuko käsipainoharjoitukset aikatauluun, jos kuuluu niin aamulla vai illalla. 
