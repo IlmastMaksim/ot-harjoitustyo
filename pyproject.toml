@@ -12,6 +12,7 @@ coverage = "^5.5"
 pytest = "^6.2.3"
 requests = "^2.25.1"
 Pillow = "^8.2.0"
+passlib = "^1.7.4"
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.7.4"

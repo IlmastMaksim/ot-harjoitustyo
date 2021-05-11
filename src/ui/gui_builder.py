@@ -1,6 +1,6 @@
 from dearpygui import core, simple
-from ui.menu import Menu
-from ui.tab import Tab
+from ui.login import Login
+from services.user import user_services
 
 
 class GuiBuilder:
@@ -10,11 +10,11 @@ class GuiBuilder:
         self.height = height
 
     def make_gui(self):
-        Menu()
-        core.add_tab_bar(name="tab_bar", parent="Main Window")
-        Tab("Workout", "tab_bar").generate()
-        Tab("Records", "tab_bar").generate()
+        Login()
 
     @staticmethod
     def run_gui():
         core.start_dearpygui(primary_window="Main Window")
+
+
+gui_builder = GuiBuilder(500, 500, theme="Dark")

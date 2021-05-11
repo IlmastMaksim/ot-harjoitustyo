@@ -1,12 +1,6 @@
-import json
 from random import sample
 from re import findall
-
-
-def get_workout_data():
-    with open("./src/data/dataset.json", "r") as read_file:
-        data = json.load(read_file)
-        return data
+from util.util import get_workout_data
 
 
 class WorkoutServices:

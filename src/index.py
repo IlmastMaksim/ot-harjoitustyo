@@ -1,9 +1,8 @@
 from dearpygui import core
 from dearpygui import simple
-from ui.gui_builder import GuiBuilder
+from ui.gui_builder import gui_builder
 
 
 if __name__ == "__main__":
-    template = GuiBuilder(500, 500, theme="Dark")
-    template.make_gui()
-    template.run_gui()
+    gui_builder.make_gui()
+    gui_builder.run_gui()
