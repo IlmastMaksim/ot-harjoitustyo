@@ -11,20 +11,32 @@ class UserRepository:
     def __init__(self, conn):
         self._conn = conn
 
-    def get_user_by_email(self, email):
-        #sql = f"SELECT id, username, password FROM users WHERE email='{email}'"
-        #cursor = self._conn.cursor()
-        #cursor.execute(
-        #    "SELECT id, username, password FROM users WHERE email=?"
-        #)
-        #self._conn.commit()
-        #return user
-        pass
+    def get_all_users(self):
+        """Palauttaa kaikki tallennetut käyttäjät listan muodossa"""
+        cursor = self._conn.cursor()
+        cursor.execute(
+            "SELECT username, email, password, substr(created_on, 0, 11) as created_on FROM users;"
+        )
+        rows = cursor.fetchall()
+        res = []
+        for row in rows:
+            res.append([row[0], row[1], row[2], row[3]])
+        self._conn.commit()
+        return res
 
-    def add_new_user(self, username, email, password):
-        sql = f"INSERT INTO users (username,email,password,created_on) VALUES ('{name}','{email}','{password}','{created_on}')"
-        db.session.execute(sql)
-        db.session.commit()
+    def get_user_by_usename(self, username):
+        cursor = self._conn.cursor()
+        cursor.execute("SELECT email FROM users WHERE username=?", (username,))
+        row = cursor.fetchone()
+        return User(row["username"]) if row else None
+
+    def add_new_user(self, user):
+        cursor = self._conn.cursor()
+        cursor.execute(
+            "INSERT INTO users (username,email,password,created_on) VALUES (?,?,?,?);",
+            (user.username, user.email, user.password, user.created_on),
+        )
+        self._conn.commit()
         return True
 
 

@@ -6,6 +6,8 @@ class User:
         password: Kuvaa käyttäjän salasanaa.
     """
 
-    def __init__(self, username, passwd):
+    def __init__(self, username, email, password, created_on):
         self.username = username
-        self.passwd = passwd
+        self.email = email
+        self.password = password
+        self.created_on = created_on

@@ -17,7 +17,7 @@ def validate_password(password):
 
 
 def encrypt_password(password):
-    return pwd_context.encrypt(password)
+    return pwd_context.hash(password)
 
 
 def verify_password(password, hashed_password):
