@@ -14,26 +14,14 @@ class UserServices:
     def get_all_users(self):
         return self._user_repo.get_all_users()
 
-    def login(self, username, password):
+    def login_user(self, username, password):
         user = self._user_repo.get_user_by_usename(username)
-        if user == None:
-            return False
-        else:
-            #if verify_password(password, user.password):
-            #    return True
-            #else:
-            #    return False
-            pass
+        return verify_password(password, user.password)
 
     def signup_user(self, username, email, password):
         hash_value = encrypt_password(password)
         created_on = get_timestamp()
-        #does_username_exist = self._user_repo.get_user_by_usename(username)
-        #if does_username_exist:
-        #    core.log_debug("not exist")
-        #    return False
-        
-        result = self._user_repo.add_new_user(User(username, email, password, created_on))
+        result = self._user_repo.add_new_user(User(username, email, hash_value, created_on))
         return result
 
     def get_current_user(self):

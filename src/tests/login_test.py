@@ -11,3 +11,13 @@ class DatabaseTest(unittest.TestCase):
         }
         result = user_services.signup_user(test_user["username"], test_user["email"], test_user["password"])
         self.assertEqual(result, True)
+
+    def test_login_user(self):
+        test_user = {
+            "username": "test",
+            "email": "test1@test.com",
+            "password": "123"
+        }
+        user_services.signup_user(test_user["username"], test_user["email"], test_user["password"])
+        result = user_services.login_user(test_user["username"], test_user["password"])
+        self.assertEqual(result, True)

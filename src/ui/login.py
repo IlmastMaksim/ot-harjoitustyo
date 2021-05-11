@@ -28,8 +28,10 @@ class Login:
             simple.hide_item("Incorrect Password.")
 
     def log_in(self, sender, data):
-        if core.get_value("Password##login") == "password":
-            result = user_services.log_in()
+        username = core.get_value("Username##login")
+        password = core.get_value("Password##login")
+        result = user_services.login_user(username, password)
+        if result:
             Menu()
             core.delete_item("Login Window")
             core.add_tab_bar(name="tab_bar", parent="Main Window")
