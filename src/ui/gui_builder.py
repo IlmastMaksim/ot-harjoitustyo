@@ -1,6 +1,5 @@
-from dearpygui import core, simple
-from ui.login import Login
-from services.user import user_services
+from dearpygui import core
+from ui.preliminary import Preliminary
 
 
 class GuiBuilder:
@@ -10,7 +9,7 @@ class GuiBuilder:
         self.height = height
 
     def make_gui(self):
-        Login()
+        Preliminary()
 
     @staticmethod
     def run_gui():

@@ -29,7 +29,7 @@ def create_tables(connection):
                 exercise TEXT,
                 sets INTEGER,
                 reps INTGER,
-                user_id INTEGER REFERENCES users ON DELETE CASCADE,
+                username INTEGER REFERENCES users ON DELETE CASCADE,
                 created_on TEXT
             );
         """
@@ -39,8 +39,8 @@ def create_tables(connection):
         """
             CREATE TABLE users (
                 id INTEGER PRIMARY KEY,
-                username TEXT,
-                email TEXT,
+                username TEXT UNIQUE NOT NULL,
+                email TEXT UNIQUE NOT NULL,
                 password TEXT,
                 created_on TEXT
             );

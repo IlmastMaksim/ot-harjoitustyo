@@ -1,6 +1,7 @@
 from database_connection import get_database_connection
 from entities.user import User
 
+
 class UserRepository:
     """
 
@@ -26,9 +27,29 @@ class UserRepository:
 
     def get_user_by_usename(self, username):
         cursor = self._conn.cursor()
-        cursor.execute("SELECT username, email, password, created_on FROM users WHERE username=?", (username,))
+        cursor.execute(
+            "SELECT username, email, password, created_on FROM users WHERE username=?",
+            (username,),
+        )
         row = cursor.fetchone()
-        return User(row["username"], row["email"], row["password"], row["created_on"]) if row else None
+        return (
+            User(row["username"], row["email"], row["password"], row["created_on"])
+            if row
+            else None
+        )
+
+    def get_user_by_email(self, email):
+        cursor = self._conn.cursor()
+        cursor.execute(
+            "SELECT username, email, password, created_on FROM users WHERE email=?",
+            (email,),
+        )
+        row = cursor.fetchone()
+        return (
+            User(row["username"], row["email"], row["password"], row["created_on"])
+            if row
+            else None
+        )
 
     def add_new_user(self, user):
         cursor = self._conn.cursor()

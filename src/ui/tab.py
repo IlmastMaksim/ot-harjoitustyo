@@ -1,10 +1,10 @@
 from dearpygui import core, simple
 from services.workout import workout_services
 from services.record import record_services
+from services.user import user_services
 from ui.chart import pie_chart, line_chart
-from PIL import Image
+from config import EXAMPLE_IMAGE_FILE_PATH
 import requests
-import random
 
 
 class Tab:
@@ -12,7 +12,8 @@ class Tab:
         self.tab_name = tab_name
         self.tab_parent = tab_parent
         self._composed_workout = None
-        self._records = record_services.get_all_records()
+        self._records = None
+        self._username = None
 
     def compose_workout(self):
         equipment_val = core.get_value("Equipment##widget")
@@ -45,6 +46,7 @@ class Tab:
             )
 
     def generate(self):
+        self._username = user_services.get_current_user().username
         with simple.tab(name=self.tab_name, parent=self.tab_parent):
             if self.tab_name == "Workout":
                 core.add_spacing(count=10)
@@ -80,10 +82,14 @@ class Tab:
                 )
                 simple.hide_item("Fill all the inputs, please.")
             elif self.tab_name == "Records":
-                self._records = record_services.get_all_records()
-                exercises = record_services.count_times_exercises_done()[0]
-                times_exercises_done = record_services.count_times_exercises_done()[1]
-                workouts_per_day = record_services.count_workouts_per_day()
+                self._records = record_services.get_all_records_by_user(self._username)
+                (
+                    exercises,
+                    times_exercises_done,
+                ) = record_services.count_times_exercises_done_by_user(self._username)
+                workouts_per_day = record_services.count_workouts_per_day_by_user(
+                    self._username
+                )
                 core.add_table(
                     "record_table",
                     ["Exercise", "Sets", "Reps", "Date"],
@@ -96,7 +102,7 @@ class Tab:
                     labels=[i + 1 for i in range(len(workouts_per_day))],
                 )
 
-    def toggle(self, sender, data):
+    def toggle(self):
         selected_rows = core.get_table_selections("workout_table")
         column = int(selected_rows[0][1])
         row = int(selected_rows[0][0])
@@ -130,7 +136,10 @@ class Tab:
         try:
             for workout in self._composed_workout:
                 record_services.save_workout(
-                    workout["Exercise"], int(workout["Sets"]), int(workout["Reps"])
+                    workout["Exercise"],
+                    int(workout["Sets"]),
+                    int(workout["Reps"]),
+                    self._username,
                 )
             core.add_text(
                 "Results successfully saved",
@@ -143,11 +152,12 @@ class Tab:
                 color=[255, 0, 0],
                 parent="workout_execution_group",
             )
-        self._records = record_services.get_all_records()
         self.cancel_workout()
+        self._records = record_services.get_all_records_by_user(self._username)
 
     def cancel_workout(self):
-        # core.delete_item("example_image")
+        if core.does_item_exist("example_image"):
+            core.delete_item("example_image")
         core.delete_item("buttons")
         core.delete_item("workout_table")
         simple.show_item("workout_composition_group")
@@ -156,20 +166,17 @@ class Tab:
         if core.get_value("Error happened while saving the result"):
             core.delete_item("Results successfully saved")
 
-    def show_example(self, link):  # need to find out how to render gif images
-        pass
-        # try:
-        #    response = requests.get(link)
-        #    if response.status_code == 200:
-        #        open("src/data/temp.gif", "wb").write(response.content)
-        #        core.add_image(
-        #            "example_image",
-        #            "src/data/temp.gif",
-        #            parent="workout_execution_group",
-        #        )
-        # except:
-        #    simple.show_logger()
-        #    core.log_debug("error")
+    def show_example(self, link):
+        if core.does_item_exist("example_image"):
+            core.delete_item("example_image")
+        response = requests.get(link)
+        if response.status_code == 200:
+            open(EXAMPLE_IMAGE_FILE_PATH, "wb").write(response.content)
+            core.add_image(
+                "example_image",
+                EXAMPLE_IMAGE_FILE_PATH,
+                parent="workout_execution_group",
+            )
 
     def clear_table(self):
         for workout in self._composed_workout:

@@ -5,14 +5,11 @@ class Menu:
     def theme_setting(sender, data):
         core.set_theme(data)
 
+    def dump_db():
+        pass
+
     with simple.window("Main Window", no_title_bar=True, autosize=True, no_resize=True):
         with simple.menu_bar(name="Main Menu"):
-            with simple.menu(name="Notifications"):
-                with simple.menu("Set notifications"):
-                    core.add_menu_item("Every 30 minutes")
-                    core.add_menu_item("Every 1 hour")
-                    core.add_menu_item("Every 2 hours")
-                    core.add_menu_item("Disable")
             with simple.menu(name="Settings"):
                 with simple.menu("Theme"):
                     core.add_menu_item(
@@ -45,5 +42,7 @@ class Menu:
                     core.add_menu_item(
                         "Red", callback=theme_setting, callback_data="Red"
                     )
+                with simple.menu(name="Database"):
+                    core.add_menu_item("Dump database", callback=dump_db)
         core.add_spacing(count=10)
     simple.hide_item("Main Menu")

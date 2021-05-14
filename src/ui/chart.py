@@ -1,5 +1,4 @@
-from dearpygui import core, simple
-from services.record import record_services
+from dearpygui import core
 
 
 class PieChart:

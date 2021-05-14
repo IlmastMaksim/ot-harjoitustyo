@@ -5,7 +5,9 @@ from services.record import record_services
 class DatabaseTest(unittest.TestCase):
     def test_data_is_saved(self):
         dummy_dataset = {"Exercise": "Arnold Press", "Sets": 12, "Reps": 5}
-        result = record_services.save_workout(dummy_dataset["Exercise"], dummy_dataset["Sets"], dummy_dataset["Reps"])
+        result = record_services.save_workout(
+            dummy_dataset["Exercise"], dummy_dataset["Sets"], dummy_dataset["Reps"], 2
+        )
         self.assertEqual(result, True)
 
     def test_data_can_be_fetched(self):
@@ -15,6 +17,11 @@ class DatabaseTest(unittest.TestCase):
     def test_count_workouts_per_day(self):
         records = record_services.count_workouts_per_day()
         self.assertGreater(len(records), 0)
+
+    def test_get_all_saved_records_for_user(self):
+        user_id = 1
+        records = record_services.get_all_records_by_user(user_id)
+        self.assertEqual(type(records), type([]))
 
     def test_count_times_exercises_done(self):
         exercises, times_exercises_done = record_services.count_times_exercises_done()

@@ -1,5 +1,3 @@
-from dearpygui import core
-from dearpygui import simple
 from ui.gui_builder import gui_builder
 
 
