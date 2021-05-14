@@ -1,4 +1,5 @@
 from dearpygui import core, simple
+from services.user import user_services
 
 
 class Menu:
@@ -6,7 +7,7 @@ class Menu:
         core.set_theme(data)
 
     def dump_db():
-        pass
+        user_services.delete_records_by_username()
 
     with simple.window("Main Window", no_title_bar=True, autosize=True, no_resize=True):
         with simple.menu_bar(name="Main Menu"):

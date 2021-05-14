@@ -15,6 +15,8 @@
 | 03.5. | 4    | kaaviot(PieChart, LineChart) tehty |
 | 04.5. | 2    | käyttöohjeet, sovellusarkkitehtuuri, refaktorointi  |
 | 05.5. | 1.5    | valikoiden vaihtamiseen liittyvän buggin korjaus |
-| 09.5. | 4    | login |
-| 11.5. | 2.5    | signup |
-| yht | 44.5  |
+| 09.5. | 4    | kirjautuminen sisään |
+| 11.5. | 2.5    | rekisteröinti |
+| 13.5. | 6    |  ---  |
+| 14.5. | 4    | --- |
+| yht | -  |

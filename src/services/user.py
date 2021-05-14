@@ -38,5 +38,17 @@ class UserServices:
     def get_current_user(self):
         return self._user
 
+    def delete_data_about_users(self):
+        result = self._user_repo.delete_data_about_users()
+        return result
+
+    def delete_user_by_username(self, username):
+        result = self._user_repo.delete_user_by_username(username)
+        return result
+
+    def delete_records_by_username(self):
+        result = self._user_repo.delete_records_by_username(self._user.username)
+        return result
+
 
 user_services = UserServices()

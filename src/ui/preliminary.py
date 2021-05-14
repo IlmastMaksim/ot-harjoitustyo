@@ -34,8 +34,8 @@ class Preliminary:
         Menu()
         core.delete_item("Login Window")
         core.add_tab_bar(name="tab_bar", parent="Main Window")
-        Tab("Workout", "tab_bar").generate()
-        Tab("Records", "tab_bar").generate()
+        Tab("Workout", "tab_bar").generate_tab()
+        Tab("Records", "tab_bar").generate_tab()
         simple.show_item("Main Menu")
 
     def log_in(self):

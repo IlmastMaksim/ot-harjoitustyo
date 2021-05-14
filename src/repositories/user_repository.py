@@ -60,5 +60,23 @@ class UserRepository:
         self._conn.commit()
         return True
 
+    def delete_data_about_users(self):
+        cursor = self._conn.cursor()
+        cursor.execute("DELETE FROM users;")
+        self._conn.commit()
+        return True
+
+    def delete_user_by_username(self, username):
+        cursor = self._conn.cursor()
+        cursor.execute("DELETE FROM users WHERE username=?;", (username,))
+        self._conn.commit()
+        return True
+
+    def delete_records_by_username(self, username):
+        cursor = self._conn.cursor()
+        cursor.execute("DELETE FROM records WHERE username=?;", (username,))
+        self._conn.commit()
+        return True
+
 
 user_repository = UserRepository(get_database_connection())

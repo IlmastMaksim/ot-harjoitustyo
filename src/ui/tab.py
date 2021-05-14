@@ -2,7 +2,7 @@ from dearpygui import core, simple
 from services.workout import workout_services
 from services.record import record_services
 from services.user import user_services
-from ui.chart import pie_chart, line_chart
+from ui.chart import PieChart, LineChart
 from config import EXAMPLE_IMAGE_FILE_PATH
 import requests
 
@@ -45,62 +45,89 @@ class Tab:
                 "Save##widget", callback=self.save_workout, parent="buttons"
             )
 
-    def generate(self):
+    def generate_workout_tab(self):
+        core.add_spacing(count=10)
+        core.add_group(name="workout_execution_group")
+        core.add_group(name="workout_composition_group")
+        core.add_combo(
+            "Equipment##widget",
+            items=workout_services.get_criterias_by_name("Equipment"),
+            parent="workout_composition_group",
+        )
+        core.add_spacing(count=4, parent="workout_composition_group")
+        core.add_combo(
+            "Exercise Type##widget",
+            items=workout_services.get_criterias_by_name("Exercise Type"),
+            parent="workout_composition_group",
+        )
+        core.add_spacing(count=4, parent="workout_composition_group")
+        core.add_combo(
+            "Muscle Group##widget",
+            items=workout_services.get_criterias_by_name("Major Muscle"),
+            parent="workout_composition_group",
+        )
+        core.add_spacing(count=4, parent="workout_composition_group")
+        core.add_button(
+            "Compose Workout##widget",
+            parent="workout_composition_group",
+            callback=self.compose_workout,
+        )
+        core.add_text(
+            "Fill all the inputs, please.",
+            color=[255, 0, 0],
+            parent="workout_composition_group",
+        )
+        simple.hide_item("Fill all the inputs, please.")
+
+    def generate_records_tab(self):
+        self._records = record_services.get_all_records_by_user(self._username)
+        core.add_table(
+            "record_table",
+            ["Exercise", "Sets", "Reps", "Date"],
+        )
+        for record_arr in self._records:
+            core.add_row("record_table", record_arr)
+
+    def generate_charts(self):
+        pie_chart_common = PieChart("CommonPieChart")
+        pie_chart_user = PieChart("UserPieChart")
+        line_chart_common = LineChart("Workouts done by all users")
+        line_chart_user = LineChart("Workouts done by you")
+        (
+            all_exercises,
+            times_all_exercises_done,
+        ) = record_services.count_times_exercises_done()
+        all_workouts_per_day = record_services.count_workouts_per_day()
+        (
+            exercises_by_user,
+            times_exercises_done_by_user,
+        ) = record_services.count_times_exercises_done_by_user(self._username)
+        workouts_per_day_by_user = record_services.count_workouts_per_day_by_user(
+            self._username
+        )
+        pie_chart_user.generate_chart(
+            data=times_exercises_done_by_user, labels=exercises_by_user
+        )
+        line_chart_user.generate_chart(
+            data=workouts_per_day_by_user,
+            labels=[i + 1 for i in range(len(workouts_per_day_by_user))],
+        )
+        pie_chart_common.generate_chart(
+            data=times_all_exercises_done, labels=all_exercises
+        )
+        line_chart_common.generate_chart(
+            data=all_workouts_per_day,
+            labels=[i + 1 for i in range(len(all_workouts_per_day))],
+        )
+
+    def generate_tab(self):
         self._username = user_services.get_current_user().username
         with simple.tab(name=self.tab_name, parent=self.tab_parent):
             if self.tab_name == "Workout":
-                core.add_spacing(count=10)
-                core.add_group(name="workout_execution_group")
-                core.add_group(name="workout_composition_group")
-                core.add_combo(
-                    "Equipment##widget",
-                    items=workout_services.get_criterias_by_name("Equipment"),
-                    parent="workout_composition_group",
-                )
-                core.add_spacing(count=4, parent="workout_composition_group")
-                core.add_combo(
-                    "Exercise Type##widget",
-                    items=workout_services.get_criterias_by_name("Exercise Type"),
-                    parent="workout_composition_group",
-                )
-                core.add_spacing(count=4, parent="workout_composition_group")
-                core.add_combo(
-                    "Muscle Group##widget",
-                    items=workout_services.get_criterias_by_name("Major Muscle"),
-                    parent="workout_composition_group",
-                )
-                core.add_spacing(count=4, parent="workout_composition_group")
-                core.add_button(
-                    "Compose Workout##widget",
-                    parent="workout_composition_group",
-                    callback=self.compose_workout,
-                )
-                core.add_text(
-                    "Fill all the inputs, please.",
-                    color=[255, 0, 0],
-                    parent="workout_composition_group",
-                )
-                simple.hide_item("Fill all the inputs, please.")
+                self.generate_workout_tab()
             elif self.tab_name == "Records":
-                self._records = record_services.get_all_records_by_user(self._username)
-                (
-                    exercises,
-                    times_exercises_done,
-                ) = record_services.count_times_exercises_done_by_user(self._username)
-                workouts_per_day = record_services.count_workouts_per_day_by_user(
-                    self._username
-                )
-                core.add_table(
-                    "record_table",
-                    ["Exercise", "Sets", "Reps", "Date"],
-                )
-                for record_arr in self._records:
-                    core.add_row("record_table", record_arr)
-                pie_chart.generate_chart(data=times_exercises_done, labels=exercises)
-                line_chart.generate_chart(
-                    data=workouts_per_day,
-                    labels=[i + 1 for i in range(len(workouts_per_day))],
-                )
+                self.generate_records_tab()
+                self.generate_charts()
 
     def toggle(self):
         selected_rows = core.get_table_selections("workout_table")

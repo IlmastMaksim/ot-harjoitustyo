@@ -80,28 +80,6 @@ class RecordRepository:
         self._conn.commit()
         return res
 
-    def get_all_sets(self):
-        """Palauttaa kaiken tallentujen harjoitusten sarjat listan muodossa"""
-        cursor = self._conn.cursor()
-        cursor.execute("SELECT sets FROM records;")
-        rows = cursor.fetchall()
-        res = []
-        for row in rows:
-            res.append(row[0])
-        self._conn.commit()
-        return res
-
-    def get_all_reps(self):
-        """Palauttaa kaiken tallentujen harjoitusten toistut listan muodossa"""
-        cursor = self._conn.cursor()
-        cursor.execute("SELECT reps FROM records;")
-        rows = cursor.fetchall()
-        res = []
-        for row in rows:
-            res.append(row[0])
-        self._conn.commit()
-        return res
-
     def get_all_dates(self):
         """Palauttaa kaiken tallentujen harjoitusten määräaikat listan muodossa"""
         cursor = self._conn.cursor()

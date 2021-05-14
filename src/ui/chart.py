@@ -2,12 +2,12 @@ from dearpygui import core
 
 
 class PieChart:
-    def __init__(self):
+    def __init__(self, label):
         self.data = []
         self.labels = []
-        self.plot_label = "##PieChart"
+        self.plot_label = "##" + label
         self.chart = lambda: core.add_pie_series(
-            self.plot_label, "PieChart", self.data, self.labels, 0.5, 0.5, 0.4
+            self.plot_label, label, self.data, self.labels, 0.5, 0.5, 0.4
         )
 
     def draw_chart(self, data, labels):
@@ -40,13 +40,13 @@ class PieChart:
 
 
 class LineChart:
-    def __init__(self):
+    def __init__(self, label):
         self.data = []
         self.labels = []
-        self.plot_label = "##LineChart"
+        self.plot_label = "##" + label
         self.chart = lambda: core.add_line_series(
             self.plot_label,
-            "LineChart",
+            label,
             y=self.data,
             x=self.labels,
             weight=2,
@@ -69,5 +69,5 @@ class LineChart:
         self.draw_chart(data, labels)
 
 
-pie_chart = PieChart()
-line_chart = LineChart()
+# pie_chart = PieChart()
+# line_chart = LineChart()
