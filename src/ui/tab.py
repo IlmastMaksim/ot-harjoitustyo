@@ -79,7 +79,7 @@ class Tab:
         )
         simple.hide_item("Fill all the inputs, please.")
 
-    def generate_records_tab(self):
+    def generate_records_table(self):
         self._records = record_services.get_all_records_by_user(self._username)
         core.add_table(
             "record_table",
@@ -126,7 +126,7 @@ class Tab:
             if self.tab_name == "Workout":
                 self.generate_workout_tab()
             elif self.tab_name == "Records":
-                self.generate_records_tab()
+                self.generate_records_table()
                 self.generate_charts()
 
     def toggle(self):

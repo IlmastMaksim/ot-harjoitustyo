@@ -15,8 +15,10 @@
 | 03.5. | 4    | kaaviot(PieChart, LineChart) tehty |
 | 04.5. | 2    | käyttöohjeet, sovellusarkkitehtuuri, refaktorointi  |
 | 05.5. | 1.5    | valikoiden vaihtamiseen liittyvän buggin korjaus |
-| 09.5. | 4    | kirjautuminen sisään |
-| 11.5. | 2.5    | rekisteröinti |
-| 13.5. | 6    |  ---  |
-| 14.5. | 4    | --- |
-| yht | -  |
+| 09.5. | 4    | kirjautumisen toteutus |
+| 11.5. | 2.5    | rekisteröinnin toteutus |
+| 13.5. | 6    |  kuvioiden lisäys, virheenkorjaus, toiminnallisuuden laajennus  |
+| 14.5. | 4    | refaktorointi, viikon 7 tavoitteiden suorittaminen  |
+| 15.5. | 3.5   | testien lisäys, viikon 7 tavoitteiden suorittaminen |
+| 16.5. | 1.5   | käytettävyyden varmistaminen |
+| yht | 59.5-60 |

@@ -3,7 +3,7 @@ from entities.user import User
 
 
 class UserRepository:
-    """
+    """Luokka, jonka avulla vuorovaikutetaan "users"-tietokannan kanssa
 
     Attributes:
         conn: yhteys tietokantaan
@@ -26,6 +26,7 @@ class UserRepository:
         return res
 
     def get_user_by_usename(self, username):
+        """Palauttaa käyttäjän käyttäjänimen käyttäjänimen pohjalla"""
         cursor = self._conn.cursor()
         cursor.execute(
             "SELECT username, email, password, created_on FROM users WHERE username=?",
@@ -39,6 +40,7 @@ class UserRepository:
         )
 
     def get_user_by_email(self, email):
+        """Palauttaa käyttäjän käyttäjänimen sähköpostiosoitteen pohjalla"""
         cursor = self._conn.cursor()
         cursor.execute(
             "SELECT username, email, password, created_on FROM users WHERE email=?",
@@ -52,6 +54,7 @@ class UserRepository:
         )
 
     def add_new_user(self, user):
+        """Lisää uuden käyttäjän tietokantaan"""
         cursor = self._conn.cursor()
         cursor.execute(
             "INSERT INTO users (username,email,password,created_on) VALUES (?,?,?,?);",
@@ -61,18 +64,21 @@ class UserRepository:
         return True
 
     def delete_data_about_users(self):
+        """Poistaa koko "users"-tietokanta"""
         cursor = self._conn.cursor()
         cursor.execute("DELETE FROM users;")
         self._conn.commit()
         return True
 
     def delete_user_by_username(self, username):
+        """Poistaa käyttäjän, jolla on vastaava käyttäjänimi "users"-tietokannalta"""
         cursor = self._conn.cursor()
         cursor.execute("DELETE FROM users WHERE username=?;", (username,))
         self._conn.commit()
         return True
 
     def delete_records_by_username(self, username):
+        """Poistaa suoritus, jonka on suorittanut tietty käyttäjä"""
         cursor = self._conn.cursor()
         cursor.execute("DELETE FROM records WHERE username=?;", (username,))
         self._conn.commit()

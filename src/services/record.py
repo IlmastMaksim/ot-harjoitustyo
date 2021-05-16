@@ -71,7 +71,7 @@ class RecordServices:
 
     def get_all_records_by_user(self, username):
         """Palauttaa kaikki tallennetut suoritukset listan muodossa"""
-        records_for_user = self._record_repo.get_all_saved_records_for_user(username)
+        records_for_user = self._record_repo.get_all_saved_records_by_user(username)
         return records_for_user
 
 

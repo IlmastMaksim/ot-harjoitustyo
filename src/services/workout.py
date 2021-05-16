@@ -9,14 +9,6 @@ class WorkoutServices:
     def __init__(self):
         self.data = get_workout_data()
 
-    def get_exercises_with_dumbbells(self):
-        """Palauttaa kaikki harjoitukset, jotka suoritetaan käyttäen käsipainoja"""
-        exercises_with_dumbbells = []
-        for data_obj in self.data:
-            if "Dumbbells" in data_obj["Equipment"]:
-                exercises_with_dumbbells.append(data_obj)
-        return exercises_with_dumbbells
-
     def get_criterias_by_name(self, name):
         """Palauttaa harjoitusten kriteriat listan muodossa mm. "equipment" -> "Bar,Dumbbells,Cable..."
 

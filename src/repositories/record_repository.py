@@ -44,7 +44,7 @@ class RecordRepository:
         self._conn.commit()
         return res
 
-    def get_all_saved_records_for_user(self, username):
+    def get_all_saved_records_by_user(self, username):
         """Palauttaa kaikki tallennetut suoritukset listan muodossa"""
         cursor = self._conn.cursor()
         cursor.execute(

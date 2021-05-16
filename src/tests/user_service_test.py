@@ -4,7 +4,7 @@ import random
 from services.user import user_services
 
 
-class DatabaseTest(unittest.TestCase):
+class UserServiceTest(unittest.TestCase):
     def setUp(self):
         self.test_username = "".join(
             random.choice(string.ascii_lowercase) for _ in range(10)

@@ -6,6 +6,7 @@
 - [Työaikakirjanpito](./dokumentaatio/tuntikirjanpito.md)
 - [Arkkitehtuuri](./dokumentaatio/arkkitehtuuri.md)
 - [Käyttöohje](./dokumentaatio/käyttöohje.md)
+- [Testaus](./dokumentaatio/testaus.md)
 
 ## Asennus
 

@@ -5,8 +5,8 @@ from services.record import record_services
 from services.user import user_services
 
 
-class DatabaseTest(unittest.TestCase):
-    def setUp(self) -> None:
+class RecordServiceTest(unittest.TestCase):
+    def setUp(self):
         self.test_id = 1
         self.test_username = "".join(
             random.choice(string.ascii_lowercase) for _ in range(10)
@@ -35,7 +35,7 @@ class DatabaseTest(unittest.TestCase):
         records = record_services.get_all_records()
         self.assertGreater(len(records), 0)
 
-    def test_get_all_saved_records_for_user(self):
+    def test_get_all_saved_records_by_user(self):
         records = record_services.get_all_records_by_user(self.test_id)
         self.assertEqual(type(records), type([]))
 
