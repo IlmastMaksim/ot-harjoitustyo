@@ -4,7 +4,7 @@ Tämä on Helsingin yliopiston ohjelmistotekniikka-kurssissa kehitetty työpöyt
 
 ## Sovelluksen tarkoitus
 
-Sovelluksen tarkoituksena on muistuttaa tietokoneen käyttäjiä jaksollisesta fyysisestä aktiviteetista, tarjota opastusta harjoitteluun ja näyttää raporttia suorituksista kaavion muodossa.
+Sovelluksen tarkoituksena on muistuttaa antaa käyttäjille mahdollisuus laatia fyysiset harjoitussessiot, tarjota opastusta harjoitteluun ja näyttää raporttia suorituksista kaavion muodossa.
 
 ## Käyttäjät
 
