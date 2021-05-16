@@ -44,14 +44,6 @@ Ohjelman pystyy suorittamaan komennolla:
 poetry run invoke start
 ```
 
-### Ohjelman suorittaminen
-
-Ohjelman pystyy suorittamaan komennolla:
-
-```bash
-poetry run invoke start
-```
-
 ### Testaus
 
 Testit suoritetaan komennolla:
